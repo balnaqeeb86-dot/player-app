@@ -1,0 +1,26 @@
+import streamlit as st
+
+# عنوان الصفحة الرئيسي
+st.title("⚽ منصة تقييم اللاعبين الاحترافية")
+st.write("أدخل بيانات اللاعب لمعرفة تقييمه الفوري وسجله!")
+
+# مربعات إدخال الأرقام على موقع الويب
+goals = st.number_input("كم عدد الأهداف المسجلة؟", min_value=0, value=0, step=1)
+assists = st.number_input("كم عدد التمريرات الحاسمة؟", min_value=0, value=0, step=1)
+
+# زر التقييم
+if st.button("احسب التقييم"):
+    total = goals + assists
+    
+    # عرض مجموع النقاط
+    st.write(f"**مجموع النقاط:** {total}")
+    
+    # تحديد التقييم بناءً على الشرط
+    if total >= 25:
+        st.success("التقييم: لاعب أسطوري ومذهل! 🐐")
+    elif total >= 15:
+        st.info("التقييم: لاعب جيد جداً ومؤثر. ⭐")
+    elif total > 0:
+        st.warning("التقييم: لاعب عادي أو يحتاج لتحسين. ⚽")
+    else:
+        st.error("موسم فاشل، لم يقدم أي شيء! ❌")
